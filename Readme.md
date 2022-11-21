@@ -1,16 +1,18 @@
-# `Beacon Client Rescript Bindings`
+# `Beacon SDK Rescript Bindings`
 
 ## Status
 
 ⚠️ Work in progress
 
+Only WalletClient currently implemented
+
 ## Installation
 
 ```console
-yarn add taquito-rescript-bindings
+yarn add rescript-beacon-sdk
 ```
 
-`taquito-rescript-bindings` should be added to `bs-dependencies` in your
+`rescript-beacon-sdk` should be added to `bs-dependencies` in your
 `bsconfig.json`:
 
 ```diff
@@ -18,7 +20,7 @@ yarn add taquito-rescript-bindings
   //...
   "bs-dependencies": [
     // ...
-+    "taquito-rescript-bindings"
++    "rescript-beacon-sdk"
   ],
   //...
 }

@@ -1,5 +1,6 @@
 {
-  "name": "taquito-bindings",
+  "name": "rescript-beacon-sdk",
+  "repository": "github:leoparis89/rescript-beacon-sdk",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
@@ -14,5 +15,12 @@
   },
   "peerDependencies": {
     "@airgap/beacon-sdk": "^3.2.0"
-  }
+  },
+  "description": "Bindings for beacon-sdk",
+  "keywords": [
+    "rescript",
+    "beacon",
+    "tezos",
+    "web3"
+  ]
 }

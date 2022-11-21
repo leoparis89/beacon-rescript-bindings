@@ -1,5 +1,6 @@
 {
-  "name": "taquito-rescript-bindings",
+  "name": "beacon-rescript-bindings",
+  "version": "1.0.0",
   "package-specs": {
     "module": "commonjs",
     "in-source": true
