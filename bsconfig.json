@@ -1,5 +1,5 @@
 {
-  "name": "beacon-rescript-bindings",
+  "name": "rescript-beacon-sdk",
   "version": "1.0.0",
   "package-specs": {
     "module": "commonjs",
