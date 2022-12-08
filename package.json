@@ -1,7 +1,7 @@
 {
   "name": "rescript-beacon-sdk",
   "repository": "github:leoparis89/rescript-beacon-sdk",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
