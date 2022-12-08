@@ -60,15 +60,19 @@ module Message = {
       ]
       type basePartialOperation = {kind: partialOperationType}
 
+      type rawMethodArg
       type transactionParams = {
-        fee: option<int>,
-        gasLimit: option<int>,
-        storageLimit: option<int>,
+        entrypoint: string,
+        value: rawMethodArg,
+        // fee: option<int>,
+        // gasLimit: option<int>,
+        // storageLimit: option<int>,
       }
 
       type transaction = {
         amount: string,
         destination: string,
+        storage_limit: option<int>,
         parameters: option<transactionParams>,
       }
 
@@ -289,6 +293,7 @@ module Message = {
 
 type peerInfo = {
   id: string,
+  icon: option<string>,
   name: string,
   publicKey: publicKey,
   relayServer: string,
@@ -306,44 +311,44 @@ type permissionInfo = {
 }
 type transportType
 
-// module Error = {
-//   let noMatchingRequest = "No matching request found!"
-//   let encodedPayloadNeedString = "Encoded payload needs to be a string"
-//   let messageNotHandled = "Message not handled'"
-//   let couldNotDecryptMessage = "Could not decrypt message"
-//   let appMetadataNotFound = "AppMetadata not found"
-//   let shouldNotWork = "Should not work!"
-//   let containerNotFound = "container not found"
-//   let platformUnknown = "platform unknown"
+module Error = {
+  let noMatchingRequest = "No matching request found!"
+  let encodedPayloadNeedString = "Encoded payload needs to be a string"
+  let messageNotHandled = "Message not handled'"
+  let couldNotDecryptMessage = "Could not decrypt message"
+  let appMetadataNotFound = "AppMetadata not found"
+  let shouldNotWork = "Should not work!"
+  let containerNotFound = "container not found"
+  let platformUnknown = "platform unknown"
 
-//   type beaconErrors =
-//     | NoMatchingRequest
-//     | EncodedPayloadNeedString
-//     | MessageNotHandled
-//     | CouldNotDecryptMessage
-//     | AppMetadataNotFound
-//     | ShouldNotWork
-//     | ContainerNotFound
-//     | PlatformUnknown
-//     | PairingRequestParsing
-//     | Unknown(string)
+  type beaconErrors =
+    | NoMatchingRequest
+    | EncodedPayloadNeedString
+    | MessageNotHandled
+    | CouldNotDecryptMessage
+    | AppMetadataNotFound
+    | ShouldNotWork
+    | ContainerNotFound
+    | PlatformUnknown
+    | PairingRequestParsing
+    | Unknown(string)
 
-//   let parse = s =>
-//     switch s {
-//     | s if s->Js.String2.includes(noMatchingRequest) => NoMatchingRequest
-//     | s if s->Js.String2.includes(encodedPayloadNeedString) => EncodedPayloadNeedString
-//     | s if s->Js.String2.includes(messageNotHandled) => MessageNotHandled
-//     | s if s->Js.String2.includes(couldNotDecryptMessage) => CouldNotDecryptMessage
-//     | s if s->Js.String2.includes(appMetadataNotFound) => AppMetadataNotFound
-//     | s if s->Js.String2.includes(shouldNotWork) => ShouldNotWork
-//     | s if s->Js.String2.includes(containerNotFound) => ContainerNotFound
-//     | s if s->Js.String2.includes(platformUnknown) => PlatformUnknown
-//     | s => Unknown(s)
-//     }
+  let parse = s =>
+    switch s {
+    | s if s->Js.String2.includes(noMatchingRequest) => NoMatchingRequest
+    | s if s->Js.String2.includes(encodedPayloadNeedString) => EncodedPayloadNeedString
+    | s if s->Js.String2.includes(messageNotHandled) => MessageNotHandled
+    | s if s->Js.String2.includes(couldNotDecryptMessage) => CouldNotDecryptMessage
+    | s if s->Js.String2.includes(appMetadataNotFound) => AppMetadataNotFound
+    | s if s->Js.String2.includes(shouldNotWork) => ShouldNotWork
+    | s if s->Js.String2.includes(containerNotFound) => ContainerNotFound
+    | s if s->Js.String2.includes(platformUnknown) => PlatformUnknown
+    | s => Unknown(s)
+    }
 
-//   // TODO implement this
-//   // let fromPromiseParsed = p => p
-// }
+  // TODO implement this
+  // let fromPromiseParsed = p => p
+}
 
 module Serializer = {
   type t
@@ -406,7 +411,7 @@ module WalletClient = {
   //   t->removePermissionRaw(accountIdentifier)->Error.fromPromiseParsed
 
   @send
-  external getPermissionsRaw: t => Js.Promise.t<array<permissionInfo>> = "getPermissions"
+  external getPermissionsRaw: (t, unit) => Js.Promise.t<array<permissionInfo>> = "getPermissions"
 
   // let getPermissions = t => t->getPermissionsRaw->Error.fromPromiseParsed
 
